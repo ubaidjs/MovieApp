@@ -1,0 +1,26 @@
+.navbar {
+	position: fixed;
+	left: 0;
+	bottom: 15px;
+	width: 80%;
+	background-color: #e8eaee;
+	color: white;
+	text-align: center;
+	z-index: 10;
+	padding: 13px 0;
+	border-radius: 50px;
+	transform: translate(12%);
+	display: flex;
+	justify-content: space-evenly;
+	box-shadow: 2px 4px 5px 0px #dbdbdb;
+
+	a {
+		text-decoration: none;
+
+		img {
+			height: 24px;
+			width: 24px;
+			vertical-align: bottom;
+		}
+	}
+}

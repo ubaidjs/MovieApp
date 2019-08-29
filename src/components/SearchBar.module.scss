@@ -1,0 +1,17 @@
+.searchBar {
+	border: none;
+	background-color: #e8eaee;
+	width: 100%;
+	padding: 15px;
+	border-radius: 5px;
+	font-family: 'Google Sans';
+}
+
+input::placeholder {
+	font-weight: bold;
+	font-family: 'Google Sans';
+}
+
+input:focus {
+	outline: none;
+}

@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-id-swiper": "^2.3.2",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "swiper": "^4.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +31,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "guppy": {
+    "id": "642a4270-c289-11e9-ab8d-eb520a820b70",
+    "name": "movie-app",
+    "type": "create-react-app",
+    "color": "#cc004a",
+    "icon": null,
+    "createdAt": 1566223095833
   }
 }
