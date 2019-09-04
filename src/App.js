@@ -4,6 +4,7 @@ import styles from './App.module.scss';
 import Home from './components/Home';
 import SearchBar from './components/SearchBar';
 import NavBar from './components/NavBar';
+import Category from './components/Category';
 import MovieDetails from './components/MovieDetails';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
 				<SearchBar />
 			</div>
 			<Route exact path="/" component={Home} />
-			<Route path="/category" render={() => <div>Category</div>} />
+			<Route path="/category" component={Category} />
 			<Route path="/saved" render={() => <div>Saved</div>} />
 			<Route path="/movie/:id" component={MovieDetails} />
 			<NavBar />
