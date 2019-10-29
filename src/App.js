@@ -11,6 +11,9 @@ function App() {
 	return (
 		<BrowserRouter>
 			<div className={styles.topBar}>
+				<h1 className={styles.heading}>
+					Find your <br /> next <span>movie</span> here
+				</h1>
 				<SearchBar />
 			</div>
 			<Route exact path="/" component={Home} />

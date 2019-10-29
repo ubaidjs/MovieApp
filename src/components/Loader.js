@@ -13,7 +13,7 @@ function Loader(props) {
 			}}
 		>
 			<img src={spinner} alt="" />
-			<p style={{ fontStyle: 'italic', color: 'gray' }}>fetching...</p>
+			{/* {<p style={{ fontStyle: 'italic', color: 'gray' }}>fetching...</p>} */}
 		</div>
 	);
 }

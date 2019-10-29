@@ -9,7 +9,6 @@ function MovieSlider(props) {
 		slidesPerView: 'auto',
 		spaceBetween: 30
 	};
-	console.log(props);
 	return (
 		<div className={styles.movieSlider}>
 			<p className={styles.categoryTitle}>{props.title}</p>

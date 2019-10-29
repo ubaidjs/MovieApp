@@ -21,7 +21,8 @@ class MovieDetails extends React.Component {
 
 	render() {
 		const { detail } = this.state;
-		const date = new Date(detail.release_date);
+		console.log(detail.release_date);
+
 		if (!detail) {
 			return (
 				<div>
@@ -32,7 +33,6 @@ class MovieDetails extends React.Component {
 			return (
 				<div>
 					<h1>{detail.title}</h1>
-					<p>{}</p>
 				</div>
 			);
 		}
