@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './NavBar.module.scss';
 import homeIcon from '../assets/home.svg';
 import categoryIcon from '../assets/list.svg';
@@ -8,15 +8,15 @@ import saveIcon from '../assets/saved.svg';
 function NavBar() {
 	return (
 		<div className={styles.navbar}>
-			<Link to="/">
+			<NavLink to="/">
 				<img src={homeIcon} alt="" />
-			</Link>
-			<Link to="/category">
+			</NavLink>
+			<NavLink to="/category">
 				<img src={categoryIcon} alt="" />
-			</Link>
-			<Link to="/saved">
+			</NavLink>
+			<NavLink to="/saved">
 				<img src={saveIcon} alt="" />
-			</Link>
+			</NavLink>
 		</div>
 	);
 }

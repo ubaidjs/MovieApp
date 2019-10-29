@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Loader from './Loader';
+import Loader from '../components/Loader';
 import styles from './Category.module.scss';
 
 class Category extends React.Component {

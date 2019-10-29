@@ -1,5 +1,5 @@
 import React from 'react';
-import Loader from './Loader';
+import Loader from '../components/Loader';
 
 class MovieDetails extends React.Component {
 	constructor(props) {
