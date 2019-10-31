@@ -1,7 +1,7 @@
 import React from 'react';
-import MovieSlider from '../components/MovieSlider';
 import SearchBar from '../components/SearchBar';
 import Loader from '../components/Loader';
+import MovieItem from '../components/MovieItem';
 import styles from './Home.module.scss';
 
 class Home extends React.Component {
@@ -38,6 +38,7 @@ class Home extends React.Component {
 
 	render() {
 		const { popular, top_rated, upcoming } = this.state;
+
 		if (!popular.results) {
 			return <Loader />;
 		}
@@ -50,10 +51,27 @@ class Home extends React.Component {
 					</h1>
 					<SearchBar />
 				</div>
-				<div className={styles.MovieSliderContainer}>
-					<MovieSlider title="Popular" results={popular.results} />
+				<div className={styles.tabsContainer}>
+					<h1>Popular</h1>
+					<div className={styles.container}>
+						{popular.results.map(item => {
+							return (
+								<div className={styles.movieContainer}>
+									<MovieItem
+										key={item.id}
+										name={item.title}
+										imgSrc={item.poster_path}
+										id={item.id}
+										year={item.release_date}
+									/>
+								</div>
+							);
+						})}
+					</div>
+
+					{/* <MovieSlider title="Popular" results={popular.results} />
 					<MovieSlider title="Top Rated" results={top_rated.results} />
-					<MovieSlider title="Upcoming" results={upcoming.results} />
+					<MovieSlider title="Upcoming" results={upcoming.results} /> */}
 				</div>
 			</>
 		);

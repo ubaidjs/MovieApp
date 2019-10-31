@@ -1,6 +1,6 @@
 .heading {
 	color: #363636;
-	font-weight: 500;
+	font-weight: 400;
 	padding-left: 10px;
 
 	span {
@@ -12,6 +12,18 @@
 	margin: 20px 20px;
 }
 
-.MovieSliderContainer {
+.tabsContainer {
 	margin-bottom: 50px;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: baseline;
+	margin-bottom: 50px;
+}
+
+.movieContainer {
+	margin: 10px 20px;
 }

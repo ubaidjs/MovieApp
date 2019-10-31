@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Loader from '../components/Loader';
+// import Loader from '../components/Loader';
 import styles from './Category.module.scss';
 
 class Category extends React.Component {
@@ -23,18 +23,20 @@ class Category extends React.Component {
 	}
 
 	render() {
-		const genres = this.state.list.genres;
-		console.log();
+		const { genres } = this.state.list;
 
 		if (!genres) {
-			return <Loader />;
+			return <></>;
 		}
 		return (
 			<div>
+				<h1 className={styles.categoryTitle}>Category</h1>
 				<ul className={styles.genreList}>
 					{genres.map(el => (
-						<Link to={`/genres/${el.name}`} key={el.id}>
-							<li>{el.name}</li>
+						<Link to={`/category/${el.name}/${el.id}`} key={el.id}>
+							<li>
+								{el.name} <span className={styles.chevron}>&#8250;</span>
+							</li>
 						</Link>
 					))}
 				</ul>

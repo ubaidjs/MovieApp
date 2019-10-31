@@ -7,11 +7,22 @@
 	margin-bottom: 6rem;
 
 	li {
-		margin: 15px 0;
+		margin: 20px 0;
 	}
 }
 
 a {
 	text-decoration: none;
 	color: inherit;
+}
+
+.chevron {
+	float: right;
+	font-size: 1.5rem;
+	color: #c93939;
+}
+
+.categoryTitle {
+	font-weight: 400;
+	margin: 30px;
 }

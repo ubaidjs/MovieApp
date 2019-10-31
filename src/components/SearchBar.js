@@ -3,7 +3,7 @@ import styles from './SearchBar.module.scss';
 
 function SearchBar() {
 	return (
-		<div>
+		<div style={{ margin: '0 10px' }}>
 			<input type="search" placeholder="Search" className={styles.searchBar} />
 		</div>
 	);
