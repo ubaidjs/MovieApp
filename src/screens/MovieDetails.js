@@ -1,41 +1,116 @@
 import React from 'react';
-import Loader from '../components/Loader';
+import saveIcon from '../assets/saved.svg';
+import calendarIcon from '../assets/calendar.svg';
+import starIcon from '../assets/star.svg';
+import languageIcon from '../assets/language.png';
+import watchIcon from '../assets/watch.svg';
+import styles from './MovieDetails.module.scss';
 
 class MovieDetails extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			detail: []
+			detail: [],
+			language: '',
+			cast: [],
+			trailer: ''
 		};
 	}
 
 	async componentDidMount() {
-		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${process.env.REACT_APP_API_KEY}`
+		const [detail, cast, trailer] = await Promise.all([
+			fetch(
+				`https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=${process.env.REACT_APP_API_KEY}`
+			),
+			fetch(
+				`https://api.themoviedb.org/3/movie/${this.props.match.params.id}/credits?api_key=${process.env.REACT_APP_API_KEY}`
+			),
+			fetch(`https://api.themoviedb.org/3/movie/${this.props.match.params.id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US
+			`)
+		]);
+		const detailJson = await detail.json();
+		const castJson = await cast.json();
+		const trailerJson = await trailer.json();
+		this.setState(
+			{
+				detail: detailJson,
+				language: detailJson.spoken_languages[0].name,
+				cast: castJson.cast,
+				trailer: trailerJson.results[0].key
+			},
+			() => console.log(this.state)
 		);
-		const dataJson = await data.json();
-		this.setState({
-			detail: dataJson
-		});
 	}
 
 	render() {
 		const { detail } = this.state;
-		console.log(detail.release_date);
 
-		if (!detail) {
-			return (
-				<div>
-					<Loader></Loader>;
+		return (
+			<div className={styles.container}>
+				<div className={styles.topButtons}>
+					<p id={styles.back} onClick={() => this.props.history.goBack()}>
+						&#8249;
+					</p>
+					<img id={styles.save} src={saveIcon} alt="save" />
 				</div>
-			);
-		} else {
-			return (
-				<div>
-					<h1>{detail.title}</h1>
+				<img
+					className={styles.poster}
+					src={`https://image.tmdb.org/t/p/w342${detail.poster_path}`}
+					alt="poster"
+				/>
+				<h2 style={{ marginBottom: '30px' }}>{detail.title}</h2>
+
+				<a
+					className={styles.trailer}
+					href={`https://www.youtube.com/watch?v=${this.state.trailer}`}
+					target="_blank"
+				>
+					Play Trailer
+				</a>
+
+				<p style={{ fontWeight: 'bold', color: 'brown', margin: '0' }}>
+					Overview
+				</p>
+				<div className={styles.summary}>
+					<div className={styles.summaryOne}>
+						<img src={calendarIcon} alt="calendarIcon" />
+						<p>{detail.release_date}</p>
+					</div>
+					<div className={styles.summaryOne}>
+						<img src={starIcon} alt="starIcon" />
+						<p>{detail.vote_average}</p>
+					</div>
+					<div className={styles.summaryOne}>
+						<img src={watchIcon} alt="watchIcon" />
+						<p>{detail.runtime} min.</p>
+					</div>
+					<div className={styles.summaryOne}>
+						<img src={languageIcon} alt="languageIcon" />
+						<p>{this.state.language}</p>
+					</div>
 				</div>
-			);
-		}
+				<p style={{ fontWeight: 'bold', color: 'brown', margin: '0' }}>
+					Synopsis
+				</p>
+				<p className={styles.synopsis}>{detail.overview}</p>
+
+				<p style={{ fontWeight: 'bold', color: 'brown', margin: '0' }}>Cast</p>
+				<div className={styles.castContainer}>
+					{this.state.cast.slice(0, 10).map(el => {
+						return (
+							<div className={styles.castItem} key={el.id}>
+								<img
+									className={styles.castImg}
+									src={`https://image.tmdb.org/t/p/w185/${el.profile_path}`}
+									alt="cast"
+								/>
+								<p className={styles.castName}>{el.name}</p>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		);
 	}
 }
 

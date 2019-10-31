@@ -1,0 +1,101 @@
+h2 {
+	font-weight: 400;
+	text-align: center;
+}
+.container {
+	margin: 20px 30px 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.topButtons {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+#save {
+	height: 24px;
+	width: 24px;
+	align-self: center;
+}
+
+#back {
+	font-size: 35px;
+	margin: 0;
+}
+
+.poster {
+	width: 120px;
+	border-radius: 15px;
+	align-self: center;
+}
+
+.synopsis {
+	text-align: justify;
+	line-height: 1.5;
+	margin-bottom: 30px;
+}
+
+.summary {
+	display: flex;
+	flex-wrap: wrap;
+
+	margin: 1em 0;
+	img {
+		height: 24px;
+		width: 24px;
+		filter: invert(69%) sepia(9%) saturate(275%) hue-rotate(178deg)
+			brightness(90%) contrast(84%);
+		margin-right: 10px;
+	}
+
+	.summaryOne {
+		width: 50%;
+		display: flex;
+		margin-bottom: 15px;
+
+		p {
+			margin: 0;
+			align-self: center;
+		}
+	}
+}
+
+.castContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: baseline;
+	margin-top: 20px;
+}
+
+.castItem {
+	// width: 30%;
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.castImg {
+	width: 44px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.castName {
+	width: 80px;
+	// text-align: center;
+	// margin: 0 auto;
+	// margin-bottom: 10px;
+	margin-left: 5px;
+	font-size: smaller;
+	align-self: center;
+}
+
+.trailer {
+	border: 0.5px solid maroon;
+	align-self: center;
+	margin-bottom: 20px;
+	padding: 10px;
+	border-radius: 50px;
+}

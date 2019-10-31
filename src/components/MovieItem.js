@@ -9,7 +9,7 @@ function MovieItem({ id, name, imgSrc, year }) {
 				<img src={`https://image.tmdb.org/t/p/w342${imgSrc}`} alt="" />
 			</Link>
 			<p className={styles.movieTitle}>
-				{name} ({year.slice(0, 4)})
+				{name} ({year ? year.slice(0, 4) : ''})
 			</p>
 		</div>
 	);

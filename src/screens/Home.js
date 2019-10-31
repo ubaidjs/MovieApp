@@ -37,7 +37,7 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { popular, top_rated, upcoming } = this.state;
+		const { popular } = this.state;
 
 		if (!popular.results) {
 			return <Loader />;
@@ -52,13 +52,12 @@ class Home extends React.Component {
 					<SearchBar />
 				</div>
 				<div className={styles.tabsContainer}>
-					<h1>Popular</h1>
+					<p>Popular</p>
 					<div className={styles.container}>
 						{popular.results.map(item => {
 							return (
-								<div className={styles.movieContainer}>
+								<div className={styles.movieContainer} key={item.id}>
 									<MovieItem
-										key={item.id}
 										name={item.title}
 										imgSrc={item.poster_path}
 										id={item.id}
