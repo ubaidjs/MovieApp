@@ -20,15 +20,11 @@
 			height: 24px;
 			width: 24px;
 			vertical-align: bottom;
-			filter: invert(27%) sepia(13%) saturate(1156%) hue-rotate(169deg)
-				brightness(97%) contrast(96%);
 		}
 	}
 }
 
-.linkActive {
-	img {
-		filter: invert(40%) sepia(81%) saturate(823%) hue-rotate(323deg)
-			brightness(77%) contrast(104%);
-	}
+.active > img {
+	filter: invert(27%) sepia(27%) saturate(4534%) hue-rotate(337deg)
+		brightness(99%) contrast(89%);
 }

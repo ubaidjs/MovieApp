@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
 import saveIcon from '../assets/saved.svg';
 import calendarIcon from '../assets/calendar.svg';
@@ -67,6 +68,7 @@ class MovieDetails extends React.Component {
 				<a
 					className={styles.trailer}
 					href={`https://www.youtube.com/watch?v=${this.state.trailer}`}
+					target="_blank"
 					rel="noopener norefferer"
 				>
 					Play Trailer

@@ -8,13 +8,13 @@ import saveIcon from '../assets/saved.svg';
 function NavBar() {
 	return (
 		<div className={styles.navbar}>
-			<NavLink to="/">
+			<NavLink exact to="/" activeClassName={styles.active}>
 				<img src={homeIcon} alt="" />
 			</NavLink>
-			<NavLink to="/category">
+			<NavLink to="/category" activeClassName={styles.active}>
 				<img src={categoryIcon} alt="" />
 			</NavLink>
-			<NavLink to="/saved">
+			<NavLink to="/saved" activeClassName={styles.active}>
 				<img src={saveIcon} alt="" />
 			</NavLink>
 		</div>
