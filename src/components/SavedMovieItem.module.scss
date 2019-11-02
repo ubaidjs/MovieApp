@@ -1,0 +1,22 @@
+.container {
+	display: flex;
+	margin: 20px 0;
+
+	img {
+		width: 60px;
+		border-radius: 10px;
+		align-self: center;
+	}
+
+	.nameyear {
+		flex-grow: 1;
+		margin-left: 15px;
+		// margin-right: px;
+	}
+
+	.button {
+		align-self: center;
+		width: 24px;
+		height: 24px;
+	}
+}

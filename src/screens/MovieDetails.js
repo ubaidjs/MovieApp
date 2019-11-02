@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
+import Moment from 'react-moment';
+//icons
 import saveIcon from '../assets/saved.svg';
+import saveIconFilled from '../assets/saved-filled.svg';
 import calendarIcon from '../assets/calendar.svg';
 import starIcon from '../assets/star.svg';
 import languageIcon from '../assets/language.png';
 import watchIcon from '../assets/watch.svg';
+//modules
 import styles from './MovieDetails.module.scss';
 import Loader from '../components/Loader';
 
@@ -18,6 +22,7 @@ class MovieDetails extends React.Component {
 			trailer: '',
 			loading: true
 		};
+		this.saveMovie = this.saveMovie.bind(this);
 	}
 
 	async componentDidMount() {
@@ -34,18 +39,51 @@ class MovieDetails extends React.Component {
 		const detailJson = await detail.json();
 		const castJson = await cast.json();
 		const trailerJson = await trailer.json();
+
+		const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+		let isSaved = [];
+		if (savedMovies) {
+			isSaved = savedMovies.filter(item => {
+				return item.id === detailJson.id;
+			});
+		}
+
 		this.setState({
 			detail: detailJson,
 			language: detailJson.spoken_languages[0].name,
 			cast: castJson.cast,
-			trailer: trailerJson ? trailerJson.results[0].key : '',
-			loading: false
+			trailer: trailerJson.results.length ? trailerJson.results[0].key : '',
+			loading: false,
+			isSaved: !!isSaved.length,
+			localMovies: savedMovies
 		});
+	}
+
+	saveMovie() {
+		if (!this.state.isSaved) {
+			if (this.state.localMovies) {
+				localStorage.setItem(
+					'savedMovies',
+					JSON.stringify([...this.state.localMovies, this.state.detail])
+				);
+			} else {
+				localStorage.setItem(
+					'savedMovies',
+					JSON.stringify([this.state.detail])
+				);
+			}
+		}
+		this.setState(prevState => {
+			return {
+				...prevState,
+				isSaved: true
+			};
+		});
+		console.log('movie saved');
 	}
 
 	render() {
 		const { detail } = this.state;
-
 		if (this.state.loading) {
 			return <Loader />;
 		}
@@ -56,7 +94,24 @@ class MovieDetails extends React.Component {
 					<p id={styles.back} onClick={() => this.props.history.goBack()}>
 						&#8249;
 					</p>
-					<img id={styles.save} src={saveIcon} alt="save" />
+					<div className={styles.saved}>
+						{this.state.isSaved ? <p>saved</p> : <p>save</p>}
+					</div>
+					{this.state.isSaved ? (
+						<img
+							onClick={this.saveMovie}
+							id={styles.save}
+							src={saveIconFilled}
+							alt="save"
+						/>
+					) : (
+						<img
+							onClick={this.saveMovie}
+							id={styles.save}
+							src={saveIcon}
+							alt="save"
+						/>
+					)}
 				</div>
 				<img
 					className={styles.poster}
@@ -80,7 +135,8 @@ class MovieDetails extends React.Component {
 				<div className={styles.summary}>
 					<div className={styles.summaryOne}>
 						<img src={calendarIcon} alt="calendarIcon" />
-						<p>{detail.release_date}</p>
+						<Moment format="DD MMM YYYY">{detail.release_date}</Moment>
+						{/* <p>{detail.release_date}</p> */}
 					</div>
 					<div className={styles.summaryOne}>
 						<img src={starIcon} alt="starIcon" />
