@@ -7,29 +7,22 @@ import PageButtons from '../components/PageButtons';
 
 const Genre = ({ match }) => {
 	const [movies, setMovies] = useState([]);
-	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		axios
 			.get(
-				`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${match.params.id}&sort_by=popularity.desc&page=${page}`
+				`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${match.params.id}&sort_by=popularity.desc&page=${match.params.page}`
 			)
 			.then(data => {
 				// setMovies([]);
 				setMovies(data.data.results);
+				setLoading(false);
 			});
-	}, [match.params.id, page]);
-
-	const handlePageNum = type => {
-		if (type === 'next') {
-			setPage(page + 1);
-		} else if (type === 'prev') {
-			setPage(page - 1);
-		}
 		window.scrollTo(0, 0);
-	};
+	}, [match.params.id, match.params.page]);
 
-	if (!movies.length) {
+	if (loading) {
 		return <Loader />;
 	} else {
 		return (
@@ -49,7 +42,11 @@ const Genre = ({ match }) => {
 						);
 					})}
 				</div>
-				<PageButtons page={page} handlePageNum={handlePageNum} />
+				<PageButtons
+					page={match.params.page}
+					genre={match.params.genrename}
+					genreId={match.params.id}
+				/>
 			</div>
 		);
 	}

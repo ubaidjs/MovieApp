@@ -5,6 +5,7 @@ import starIcon from '../assets/star.svg';
 import languageIcon from '../assets/language.png';
 import watchIcon from '../assets/watch.svg';
 import styles from './MovieDetails.module.scss';
+import Loader from '../components/Loader';
 
 class MovieDetails extends React.Component {
 	constructor(props) {
@@ -13,7 +14,8 @@ class MovieDetails extends React.Component {
 			detail: [],
 			language: '',
 			cast: [],
-			trailer: ''
+			trailer: '',
+			loading: true
 		};
 	}
 
@@ -31,19 +33,21 @@ class MovieDetails extends React.Component {
 		const detailJson = await detail.json();
 		const castJson = await cast.json();
 		const trailerJson = await trailer.json();
-		this.setState(
-			{
-				detail: detailJson,
-				language: detailJson.spoken_languages[0].name,
-				cast: castJson.cast,
-				trailer: trailerJson.results[0].key
-			},
-			() => console.log(this.state)
-		);
+		this.setState({
+			detail: detailJson,
+			language: detailJson.spoken_languages[0].name,
+			cast: castJson.cast,
+			trailer: !trailerJson ? trailerJson.results[0].key : '',
+			loading: false
+		});
 	}
 
 	render() {
 		const { detail } = this.state;
+
+		if (this.state.loading) {
+			return <Loader />;
+		}
 
 		return (
 			<div className={styles.container}>
@@ -63,7 +67,7 @@ class MovieDetails extends React.Component {
 				<a
 					className={styles.trailer}
 					href={`https://www.youtube.com/watch?v=${this.state.trailer}`}
-					target="_blank"
+					rel="noopener norefferer"
 				>
 					Play Trailer
 				</a>
@@ -102,7 +106,7 @@ class MovieDetails extends React.Component {
 								<img
 									className={styles.castImg}
 									src={`https://image.tmdb.org/t/p/w185/${el.profile_path}`}
-									alt="cast"
+									alt="img"
 								/>
 								<p className={styles.castName}>{el.name}</p>
 							</div>

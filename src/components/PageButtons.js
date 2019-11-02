@@ -1,16 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './PageButtons.module.scss';
 
 const PageButtons = props => {
+	const { page } = props;
 	return (
 		<div className={styles.buttons}>
-			{props.page === 1 ? (
-				<button disabled>Prev</button>
+			{page === '1' ? (
+				<button disabled>Prev Page</button>
 			) : (
-				<button onClick={() => props.handlePageNum('prev')}>Prev</button>
+				<Link to={`/category/${props.genre}/${props.genreId}/${page - 1}`}>
+					<button>Prev Page</button>
+				</Link>
 			)}
-			<p>{props.page}</p>
-			<button onClick={() => props.handlePageNum('next')}>Next</button>
+			<Link
+				to={`/category/${props.genre}/${props.genreId}/${parseInt(page) + 1}`}
+			>
+				<button>Next Page</button>
+			</Link>
 		</div>
 	);
 };

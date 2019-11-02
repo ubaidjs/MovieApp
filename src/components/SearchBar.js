@@ -1,10 +1,17 @@
 import React from 'react';
 import styles from './SearchBar.module.scss';
 
-function SearchBar() {
+function SearchBar({ handleSearchTerm, handleSearchSubmit }) {
 	return (
 		<div style={{ margin: '0 10px' }}>
-			<input type="search" placeholder="Search" className={styles.searchBar} />
+			<form onSubmit={handleSearchSubmit}>
+				<input
+					type="search"
+					placeholder="Search movies"
+					className={styles.searchBar}
+					onChange={handleSearchTerm}
+				/>
+			</form>
 		</div>
 	);
 }

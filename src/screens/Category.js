@@ -33,7 +33,7 @@ class Category extends React.Component {
 				<h1 className={styles.categoryTitle}>Category</h1>
 				<ul className={styles.genreList}>
 					{genres.map(el => (
-						<Link to={`/category/${el.name}/${el.id}`} key={el.id}>
+						<Link to={`/category/${el.name}/${el.id}/1`} key={el.id}>
 							<li>
 								{el.name} <span className={styles.chevron}>&#8250;</span>
 							</li>
