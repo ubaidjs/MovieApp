@@ -37,7 +37,7 @@ class MovieDetails extends React.Component {
 			detail: detailJson,
 			language: detailJson.spoken_languages[0].name,
 			cast: castJson.cast,
-			trailer: !trailerJson ? trailerJson.results[0].key : '',
+			trailer: trailerJson ? trailerJson.results[0].key : '',
 			loading: false
 		});
 	}
