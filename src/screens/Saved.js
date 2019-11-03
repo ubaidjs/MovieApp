@@ -31,8 +31,8 @@ const Saved = () => {
 	} else {
 		return (
 			<>
-				<h1 className={styles.heading}>Saved Movies</h1>;
-				<p>No saved movies...</p>
+				<h1 className={styles.heading}>Saved Movies</h1>
+				<p style={{ marginLeft: '30px' }}>No saved movies...</p>
 			</>
 		);
 	}

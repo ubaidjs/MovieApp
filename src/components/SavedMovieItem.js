@@ -14,7 +14,7 @@ const SavedMovieItem = ({
 		<div className={styles.container}>
 			<img src={`https://image.tmdb.org/t/p/w342${poster}`} alt="poster" />
 			<div className={styles.nameyear}>
-				<p>{title}</p>
+				<h4>{title}</h4>
 				<p>{year}</p>
 			</div>
 			<img
