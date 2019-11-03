@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import '../assets/react-tabs.css';
 import SearchBar from '../components/SearchBar';
 import Loader from '../components/Loader';
 import MovieItem from '../components/MovieItem';
