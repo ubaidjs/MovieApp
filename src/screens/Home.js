@@ -4,6 +4,7 @@ import '../assets/react-tabs.css';
 import SearchBar from '../components/SearchBar';
 import Loader from '../components/Loader';
 import MovieItem from '../components/MovieItem';
+import tmdb from '../assets/tmdb.svg';
 import styles from './Home.module.scss';
 
 class Home extends React.Component {
@@ -50,21 +51,6 @@ class Home extends React.Component {
 
 	async handleSearchSubmit(e) {
 		e.preventDefault();
-		console.log('sumbit function called');
-		// const searchResult = await fetch(
-		// 	`https://api.themoviedb.org/3/search/movie?api_key=73f48f5f09fbac24a3582ebe2607082f&language=en-US&query=${this.state.searchTerm}&page=1&include_adult=false`
-		// );
-
-		// const searchResultJson = await searchResult.json();
-		// this.setState(
-		// 	prevState => {
-		// 		return {
-		// 			...prevState,
-		// 			searchResult: searchResultJson.results
-		// 		};
-		// 	},
-		// 	() => console.log(this.state.searchResult)
-		// );
 		this.props.history.push(`/search/${this.state.searchTerm}`);
 	}
 
@@ -84,6 +70,7 @@ class Home extends React.Component {
 					<SearchBar
 						handleSearchTerm={this.handleSearchTerm}
 						handleSearchSubmit={this.handleSearchSubmit}
+						searchTerm={this.state.searchTerm}
 					/>
 				</div>
 				{!this.state.searchTerm && (
@@ -149,6 +136,11 @@ class Home extends React.Component {
 							</div>
 						</TabPanel>
 					</Tabs>
+				)}
+				{this.state.searchTerm && (
+					<div className={styles.tmdbWrapper}>
+						<img className={styles.tmdb} src={tmdb} alt="tmdb logo" />
+					</div>
 				)}
 			</>
 		);

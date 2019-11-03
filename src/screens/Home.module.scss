@@ -27,3 +27,13 @@
 .movieContainer {
 	margin: 10px 20px;
 }
+
+.tmdbWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	.tmdb {
+		width: 35%;
+	}
+}

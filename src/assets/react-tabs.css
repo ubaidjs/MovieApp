@@ -21,9 +21,9 @@
 
 .react-tabs__tab--selected {
 	background: #fff;
-	border-bottom: 2px solid;
-	border-color: #aaa;
-	color: black;
+	border-bottom: 1px solid;
+	border-color: #c93939;
+	color: #c93939;
 }
 
 .react-tabs__tab--disabled {
