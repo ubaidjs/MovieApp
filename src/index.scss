@@ -18,3 +18,10 @@ body {
 h1 {
 	font-weight: 400;
 }
+
+@media only screen and (min-width: 650px) {
+	#root {
+		width: 650px;
+		margin: 0 auto;
+	}
+}
