@@ -1,4 +1,6 @@
 import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import SearchBar from '../components/SearchBar';
 import Loader from '../components/Loader';
 import MovieItem from '../components/MovieItem';
@@ -20,13 +22,13 @@ class Home extends React.Component {
 	async componentDidMount() {
 		let [popular, top_rated, upcoming] = await Promise.all([
 			fetch(
-				`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=5`
+				`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
 			),
 			fetch(
 				`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=2`
 			),
 			fetch(
-				`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=2`
+				`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
 			)
 		]);
 		const popularJson = await popular.json();
@@ -67,7 +69,7 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { popular } = this.state;
+		const { popular, top_rated, upcoming } = this.state;
 
 		if (!popular.results) {
 			return <Loader />;
@@ -77,44 +79,76 @@ class Home extends React.Component {
 			<>
 				<div className={styles.topBar}>
 					<h1 className={styles.heading}>
-						Find your <br /> next <span>movie</span> here
+						Find your <br /> next <span>movie</span> here.
 					</h1>
 					<SearchBar
 						handleSearchTerm={this.handleSearchTerm}
 						handleSearchSubmit={this.handleSearchSubmit}
 					/>
 				</div>
-				{this.state.searchResult &&
-					this.state.searchResult.map(item => {
-						return (
-							<div>
-								<MovieItem
-									name={item.title}
-									imgSrc={item.poster_path}
-									id={item.id}
-									year={item.release_date}
-								/>
-							</div>
-						);
-					})}
 				{!this.state.searchTerm && (
-					<div className={styles.tabsContainer}>
-						<p>Popular</p>
-						<div className={styles.container}>
-							{popular.results.map(item => {
-								return (
-									<div className={styles.movieContainer} key={item.id}>
-										<MovieItem
-											name={item.title}
-											imgSrc={item.poster_path}
-											id={item.id}
-											year={item.release_date}
-										/>
-									</div>
-								);
-							})}
-						</div>
-					</div>
+					<Tabs>
+						<TabList>
+							<Tab>Popular</Tab>
+							<Tab>Top Rated</Tab>
+							<Tab>Upcoming</Tab>
+						</TabList>
+
+						<TabPanel>
+							<div className={styles.tabsContainer}>
+								<div className={styles.container}>
+									{popular.results.map(item => {
+										return (
+											<div className={styles.movieContainer} key={item.id}>
+												<MovieItem
+													name={item.title}
+													imgSrc={item.poster_path}
+													id={item.id}
+													year={item.release_date}
+												/>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+						</TabPanel>
+						<TabPanel>
+							<div className={styles.tabsContainer}>
+								<div className={styles.container}>
+									{top_rated.results.map(item => {
+										return (
+											<div className={styles.movieContainer} key={item.id}>
+												<MovieItem
+													name={item.title}
+													imgSrc={item.poster_path}
+													id={item.id}
+													year={item.release_date}
+												/>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+						</TabPanel>
+						<TabPanel>
+							<div className={styles.tabsContainer}>
+								<div className={styles.container}>
+									{upcoming.results.map(item => {
+										return (
+											<div className={styles.movieContainer} key={item.id}>
+												<MovieItem
+													name={item.title}
+													imgSrc={item.poster_path}
+													id={item.id}
+													year={item.release_date}
+												/>
+											</div>
+										);
+									})}
+								</div>
+							</div>
+						</TabPanel>
+					</Tabs>
 				)}
 			</>
 		);

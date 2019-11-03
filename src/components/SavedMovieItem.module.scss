@@ -1,6 +1,11 @@
 .container {
 	display: flex;
+	justify-content: space-between;
 	margin: 20px 0;
+
+	.link {
+		display: flex;
+	}
 
 	img {
 		width: 60px;
@@ -11,6 +16,16 @@
 	.nameyear {
 		flex-grow: 1;
 		margin-left: 15px;
+		color: #636363;
+
+		p {
+			font-style: italic;
+			font-size: 12px;
+		}
+
+		* {
+			font-weight: 400;
+		}
 		// margin-right: px;
 	}
 
