@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import MovieDetails from './screens/MovieDetails';
 import Home from './screens/Home';
@@ -10,6 +11,8 @@ import Saved from './screens/Saved';
 import NavBar from './components/NavBar';
 
 function App() {
+	ReactGA.initialize('UA-147969670-2');
+	ReactGA.pageview('/');
 	return (
 		<BrowserRouter>
 			<Route exact path="/" component={Home} />
