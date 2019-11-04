@@ -50,7 +50,9 @@ class MovieDetails extends React.Component {
 
 		this.setState({
 			detail: detailJson,
-			language: detailJson.spoken_languages[0].name,
+			language: detailJson.spoken_languages.length
+				? detailJson.spoken_languages[0].name
+				: '',
 			cast: castJson.cast,
 			trailer: trailerJson.results.length ? trailerJson.results[0].key : '',
 			loading: false,
