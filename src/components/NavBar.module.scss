@@ -24,9 +24,8 @@
 	}
 }
 
-.active > img {
-	filter: invert(27%) sepia(27%) saturate(4534%) hue-rotate(337deg)
-		brightness(99%) contrast(89%);
+.active > svg {
+	stroke: #c93939;
 }
 
 @media only screen and (min-width: 600px) {
