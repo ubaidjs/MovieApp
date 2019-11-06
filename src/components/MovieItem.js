@@ -6,7 +6,10 @@ function MovieItem({ id, name, imgSrc, year }) {
 	return (
 		<div className={styles.movieItem}>
 			<Link to={`/movie/${id}`}>
-				<img src={`https://image.tmdb.org/t/p/w342${imgSrc}`} alt="" />
+				<img
+					src={`https://image.tmdb.org/t/p/w342${imgSrc}`}
+					alt="poster_img"
+				/>
 			</Link>
 			<p className={styles.movieTitle}>
 				{name} ({year ? year.slice(0, 4) : ''})
